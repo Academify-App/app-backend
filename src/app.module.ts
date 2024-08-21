@@ -1,25 +1,27 @@
 import { Module } from '@nestjs/common';
-import * as dotenv from 'dotenv';
-import { UsersModule } from './users/users.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { ConfigModule } from '@nestjs/config';
-
-dotenv.config();
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: process.env.DB_DIALECT as 'mysql',
-      host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT, 10),
-      username: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true, // Disable synchronize in production
+    ConfigModule.forRoot({
+      isGlobal: true,
     }),
-    ConfigModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        type: 'postgres',
+        url: configService.get<string>('DATABASE_URL'),
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        synchronize: true, // Disable in production
+        ssl: {
+          rejectUnauthorized: false, // Allow self-signed certificates (use with caution)
+        },
+      }),
+      inject: [ConfigService],
+    }),
     UsersModule,
     AuthModule,
   ],
