@@ -1,4 +1,4 @@
-Here's how you can add the base URL `https://academify-backend-5cz9.onrender.com` to your initial README file, along with the previously documented API endpoints.
+Thank you for the clarification. I'll update the README file accordingly to reflect the correct request body formats for the `register` and `login` endpoints.
 
 ### README.md
 
@@ -31,10 +31,9 @@ https://academify-backend-5cz9.onrender.com
 - **Body:** 
   ```json
   {
+    "name": "John Doe",
     "email": "user@example.com",
-    "password": "password123",
-    "firstName": "John",
-    "lastName": "Doe"
+    "password": "password123"
   }
   ```
 
@@ -44,9 +43,8 @@ https://academify-backend-5cz9.onrender.com
   ```json
   {
     "id": "user_id",
+    "name": "John Doe",
     "email": "user@example.com",
-    "firstName": "John",
-    "lastName": "Doe",
     "createdAt": "2024-08-21T12:00:00Z"
   }
   ```
@@ -106,9 +104,3 @@ To run the project locally:
 2. Install dependencies using `npm install`.
 3. Configure your environment variables in a `.env` file.
 4. Start the application using `npm run start:dev`.
-
-
-### Summary:
-- **Base URL**: Added at the top of the README for easy reference.
-- **API Endpoints**: Detailed documentation for the registration and login endpoints with request/response examples.
-- **Running the Project**: Instructions on how to clone, install dependencies, and run the project.
