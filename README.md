@@ -1,178 +1,114 @@
+Here's how you can add the base URL `https://academify-backend-5cz9.onrender.com` to your initial README file, along with the previously documented API endpoints.
 
-# API Documentation
+### README.md
 
-## 1. User Registration
+```markdown
+# Academify Backend
+
+This repository contains the backend code for the Academify application, built using NestJS with JWT authentication and PostgreSQL for database management.
+
+## Base URL
+
+All API requests should be made to the following base URL:
+
+```
+https://academify-backend-5cz9.onrender.com
+```
+
+## API Endpoints
+
+### 1. User Registration
 
 **Endpoint:** `POST /api/register`
 
-**Description:**  
-This endpoint allows users to register a new account by providing their personal details. Upon successful registration, the user will receive a confirmation message.
+**Description:** This endpoint allows a new user to register into the Academify application.
 
-### Request
+**Request:**
 
-**URL:** `/api/register`
-
-**Method:** `POST`
-
-**Headers:**
-- `Content-Type: application/json`
-
-**Request Body:**
-```json
-{
-  "email": "string",
-  "password": "string",
-  "firstName": "string",
-  "lastName": "string"
-}
-```
-
-**Request Body Parameters:**
-
-- `email` (string, required): The email address of the user. Must be a valid email format.
-- `password` (string, required): The password for the user account. Should be at least 6 characters long.
-- `firstName` (string, required): The first name of the user.
-- `lastName` (string, required): The last name of the user.
-
-### Response
-
-**Status Code:** `201 Created`
-
-**Response Body:**
-```json
-{
-  "message": "User successfully registered",
-  "user": {
-    "email": "string",
-    "firstName": "string",
-    "lastName": "string"
+- **URL:** `/api/register`
+- **Method:** `POST`
+- **Headers:** `Content-Type: application/json`
+- **Body:** 
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "password123",
+    "firstName": "John",
+    "lastName": "Doe"
   }
-}
-```
+  ```
 
-**Response Body Parameters:**
+**Response:**
 
-- `message` (string): A message indicating that the registration was successful.
-- `user` (object): The registered user's details.
-  - `email` (string): The email address of the user.
-  - `firstName` (string): The first name of the user.
-  - `lastName` (string): The last name of the user.
+- **Success (201 Created):**
+  ```json
+  {
+    "id": "user_id",
+    "email": "user@example.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "createdAt": "2024-08-21T12:00:00Z"
+  }
+  ```
+- **Error (400 Bad Request):**
+  ```json
+  {
+    "statusCode": 400,
+    "message": [
+      "email must be a valid email",
+      "password must be at least 6 characters long"
+    ],
+    "error": "Bad Request"
+  }
+  ```
 
-### Error Responses
-
-**Status Code:** `400 Bad Request`
-
-**Response Body:**
-```json
-{
-  "statusCode": 400,
-  "message": "Bad Request",
-  "errors": [
-    "email must be a valid email",
-    "password must be at least 6 characters long"
-  ]
-}
-```
-
-- `statusCode` (number): The HTTP status code.
-- `message` (string): Error message indicating the problem with the request.
-- `errors` (array of strings): A list of validation errors.
-
-**Status Code:** `409 Conflict`
-
-**Response Body:**
-```json
-{
-  "statusCode": 409,
-  "message": "Email already exists"
-}
-```
-
-- `statusCode` (number): The HTTP status code.
-- `message` (string): Error message indicating that the email is already in use.
-
----
-
-## 2. User Authentication
+### 2. User Authentication (Login)
 
 **Endpoint:** `POST /api/login`
 
-**Description:**  
-This endpoint allows users to authenticate by providing their email and password. Upon successful authentication, the user will receive a JWT token that can be used for subsequent authenticated requests.
+**Description:** This endpoint allows a registered user to log in to the Academify application.
 
-### Request
+**Request:**
 
-**URL:** `/api/login`
+- **URL:** `/api/login`
+- **Method:** `POST`
+- **Headers:** `Content-Type: application/json`
+- **Body:** 
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "password123"
+  }
+  ```
 
-**Method:** `POST`
+**Response:**
 
-**Headers:**
-- `Content-Type: application/json`
+- **Success (200 OK):**
+  ```json
+  {
+    "accessToken": "jwt_token"
+  }
+  ```
+- **Error (401 Unauthorized):**
+  ```json
+  {
+    "statusCode": 401,
+    "message": "Invalid credentials",
+    "error": "Unauthorized"
+  }
+  ```
 
-**Request Body:**
-```json
-{
-  "email": "string",
-  "password": "string"
-}
-```
+## How to Run
 
-**Request Body Parameters:**
+To run the project locally:
 
-- `email` (string, required): The email address of the user.
-- `password` (string, required): The password for the user account.
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Configure your environment variables in a `.env` file.
+4. Start the application using `npm run start:dev`.
 
-### Response
 
-**Status Code:** `200 OK`
-
-**Response Body:**
-```json
-{
-  "accessToken": "string"
-}
-```
-
-**Response Body Parameters:**
-
-- `accessToken` (string): A JWT token that the user can use for authenticated requests.
-
-### Error Responses
-
-**Status Code:** `401 Unauthorized`
-
-**Response Body:**
-```json
-{
-  "statusCode": 401,
-  "message": "Invalid credentials"
-}
-```
-
-- `statusCode` (number): The HTTP status code.
-- `message` (string): Error message indicating that the provided credentials are invalid.
-
-**Status Code:** `400 Bad Request`
-
-**Response Body:**
-```json
-{
-  "statusCode": 400,
-  "message": "Bad Request",
-  "errors": [
-    "email must be a valid email",
-    "password should not be empty"
-  ]
-}
-```
-
-- `statusCode` (number): The HTTP status code.
-- `message` (string): Error message indicating the problem with the request.
-- `errors` (array of strings): A list of validation errors.
-
----
-
-### Additional Notes
-
-- **Security:** Passwords should be securely hashed before storage, and JWT tokens should be kept confidential.
-- **Testing:** Use tools like Postman or cURL to test the endpoints. Ensure that all required fields are provided and are in the correct format.
+### Summary:
+- **Base URL**: Added at the top of the README for easy reference.
+- **API Endpoints**: Detailed documentation for the registration and login endpoints with request/response examples.
+- **Running the Project**: Instructions on how to clone, install dependencies, and run the project.
