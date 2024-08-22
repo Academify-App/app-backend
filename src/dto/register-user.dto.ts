@@ -19,4 +19,8 @@ export class RegisterUserDto {
   @MinLength(6, { message: 'password must be at least 6 characters long' })
   @MaxLength(20, { message: 'password should not exceed 20 characters' })
   password: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'Identity should not be empty' })
+  identity: string;
 }

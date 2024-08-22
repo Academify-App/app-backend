@@ -28,4 +28,13 @@ export class User {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @Column({ nullable: true })
+  otp?: string;
+
+  @Column({ nullable: true })
+  otpExpiresAt?: Date;
+
+  @Column({ unique: true })
+  identity: string;
 }
