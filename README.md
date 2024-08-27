@@ -90,7 +90,7 @@ curl -X POST https://academify-backend-5cz9.onrender.com/api/login \
 
 ### 3. Send OTP for Email Verification
 
-**Endpoint:** `POST /api/auth/send-otp`
+**Endpoint:** `POST /api/send-otp`
 
 This endpoint allows users to request an OTP (One-Time Password) to verify their email address.
 
@@ -122,7 +122,7 @@ curl -X POST https://academify-backend-5cz9.onrender.com/api/auth/send-otp \
 
 ### 4. Email Verification (OTP)
 
-**Endpoint:** `POST /api/auth/verify-email`
+**Endpoint:** `POST /api/verify-otp`
 
 This endpoint allows users to verify their email by entering the OTP they received.
 

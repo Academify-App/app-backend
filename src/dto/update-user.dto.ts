@@ -14,5 +14,5 @@ export class UpdateUserDto {
   otp?: string;
 
   @IsOptional()
-  otpExpiresAt?: Date;
+  otp_expires_at?: Date;
 }

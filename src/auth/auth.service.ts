@@ -47,10 +47,10 @@ export class AuthService {
     const otp = this.generateOTP();
 
     user.otp = otp;
-    user.otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000); // Expires in 10 minutes
+    user.otp_expires_at = new Date(Date.now() + 10 * 60 * 1000); // Expires in 10 minutes
     await this.usersService.update(user.id, {
       otp: user.otp,
-      otpExpiresAt: user.otpExpiresAt,
+      otp_expires_at: user.otp_expires_at,
     });
 
     await this.mailService.sendOTP(email, otp);
@@ -66,10 +66,13 @@ export class AuthService {
     if (!user) {
       throw new BadRequestException('User not found');
     }
-    if (user.otp !== otp || new Date() > user.otpExpiresAt) {
+    if (user.otp !== otp || new Date() > user.otp_expires_at) {
       throw new BadRequestException('Invalid or expired OTP');
     }
-    await this.usersService.update(user.id, { otp: null, otpExpiresAt: null });
+    await this.usersService.update(user.id, {
+      otp: null,
+      otp_expires_at: null,
+    });
     return { message: 'OTP verified successfully' };
   }
 }

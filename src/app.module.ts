@@ -17,7 +17,7 @@ import { MailModule } from './mail/mail.module';
         type: 'postgres',
         url: configService.get<string>('DATABASE_URL'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: true, // Disable in production
+        synchronize: false, // Disable in production
         ssl: {
           rejectUnauthorized: false, // Allow self-signed certificates (use with caution)
         },
