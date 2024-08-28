@@ -113,7 +113,7 @@ This endpoint allows users to request an OTP (One-Time Password) to verify their
 #### Example Request
 
 ```bash
-curl -X POST https://academify-backend-5cz9.onrender.com/api/auth/send-otp \
+curl -X POST https://academify-backend-5cz9.onrender.com/api/send-otp \
 -H "Content-Type: application/json" \
 -d '{
   "email": "john.doe@example.com"
@@ -147,7 +147,7 @@ This endpoint allows users to verify their email by entering the OTP they receiv
 #### Example Request
 
 ```bash
-curl -X POST https://academify-backend-5cz9.onrender.com/api/auth/verify-email \
+curl -X POST https://academify-backend-5cz9.onrender.com/api/verify-email \
 -H "Content-Type: application/json" \
 -d '{
   "email": "john.doe@example.com",
