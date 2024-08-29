@@ -26,7 +26,7 @@ export class MailService {
       from: process.env.EMAIL_USER,
       to: email,
       subject: 'Your OTP Code',
-      text: `Your OTP code is ${otp}. It will expire in 10 minutes.`,
+      text: `Your OTP code is ${otp}. It will expire in 5 minutes.`,
     };
 
     return await this.transporter.sendMail(mailOptions);
