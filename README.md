@@ -55,16 +55,15 @@ curl -X POST https://academify-backend-5cz9.onrender.com/api/register \
 
 ### 2. User Login
 
-**Endpoint:** `POST /api/login`
+**Endpoint**: `POST /api/login`
 
-This endpoint allows a registered user to log in.
+**Description**: This endpoint allows users to authenticate by providing their email and password. Upon successful authentication, it returns a JWT access token along with the user's details.
 
-#### Request Body
-
+**Request Body**:
 ```json
 {
-  "email": "string",
-  "password": "string"
+  "email": "user@example.com",
+  "password": "password123"
 }
 ```
 
@@ -77,15 +76,16 @@ This endpoint allows a registered user to log in.
 - **401 Unauthorized:** Invalid credentials.
 - **500 Internal Server Error:** Server error.
 
-#### Example Request
-
-```bash
-curl -X POST https://academify-backend-5cz9.onrender.com/api/login \
--H "Content-Type: application/json" \
--d '{
-  "email": "john.doe@example.com",
-  "password": "password123"
-}'
+**Response**:
+```json
+{
+  "access_token": "your.jwt.token.here",
+  "user": {
+    "name": "User's Name",
+    "email": "user@example.com",
+    "identity": "User's Identity"
+  }
+}
 ```
 
 ### 3. Send OTP for Email Verification
