@@ -47,7 +47,7 @@ export class AuthService {
     const otp = this.generateOTP();
 
     user.otp = otp;
-    user.otp_expires_at = new Date(Date.now() + 10 * 60 * 1000); // Expires in 10 minutes
+    user.otp_expires_at = new Date(Date.now() + 5 * 60 * 1000);
     await this.usersService.update(user.id, {
       otp: user.otp,
       otp_expires_at: user.otp_expires_at,
@@ -58,7 +58,7 @@ export class AuthService {
   }
 
   generateOTP(): string {
-    return Math.floor(100000 + Math.random() * 900000).toString(); // Generate a 6-digit OTP
+    return Math.floor(1000 + Math.random() * 9000).toString();
   }
 
   async verifyOTP(email: string, otp: string) {
