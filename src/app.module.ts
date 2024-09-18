@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { MailService } from './mail/mail.service';
 import { MailModule } from './mail/mail.module';
+import { MaterialModule } from './materials/materials.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { MailModule } from './mail/mail.module';
     UsersModule,
     AuthModule,
     MailModule,
+    MaterialModule,
   ],
   providers: [MailService],
 })
