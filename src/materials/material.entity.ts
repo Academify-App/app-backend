@@ -8,15 +8,6 @@ export class Material {
   @Column()
   category: string;
 
-  @Column('decimal', { precision: 5, scale: 2 })
-  ratings: number;
-
-  @Column('decimal', { precision: 10, scale: 2 })
-  cost: number;
-
-  @Column('text', { array: true })
-  reviews: string[];
-
   @Column()
   numberOfPages: number;
 
@@ -35,6 +26,9 @@ export class Material {
   @Column('decimal', { precision: 10, scale: 2 })
   price: number;
 
-  @Column()
+  @Column('text')
   url: string;
+
+  @Column('jsonb', { default: [] })
+  reviews: { value: string; rating: number }[];
 }

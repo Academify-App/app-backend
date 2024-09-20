@@ -23,4 +23,16 @@ export class MaterialService {
   findByCategory(category: string): Promise<Material[]> {
     return this.materialRepository.find({ where: { category } });
   }
+
+  async addReview(
+    id: number,
+    review: { value: string; rating: number },
+  ): Promise<Material> {
+    const material = await this.materialRepository.findOneBy({ id });
+    if (!material) {
+      throw new Error('Material not found');
+    }
+    material.reviews.push(review);
+    return this.materialRepository.save(material);
+  }
 }

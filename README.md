@@ -170,9 +170,6 @@ curl -X POST https://academify-backend-5cz9.onrender.com/api/verify-email \
 ```json
 {
   "category": "string",            // Category of the material (e.g., Tutorials, Handouts, Ebooks, Projects)
-  "ratings": 0.0,                  // Rating of the material (decimal, e.g., 4.5)
-  "cost": 0.0,                     // Cost of the material (decimal, e.g., 20.00)
-  "reviews": ["string"],           // Array of reviews for the material
   "numberOfPages": 0,              // Number of pages in the material (integer)
   "department": "string",          // Department associated with the material
   "level": "string",               // Level of the material (e.g., Beginner, Intermediate, Advanced)
@@ -191,9 +188,6 @@ curl -X POST https://academify-backend-5cz9.onrender.com/api/verify-email \
 ```json
 {
   "category": "Tutorials",
-  "ratings": 4.5,
-  "cost": 20.00,
-  "reviews": ["Great material!", "Very helpful"],
   "numberOfPages": 150,
   "department": "Computer Science",
   "level": "Beginner",
@@ -220,9 +214,6 @@ curl -X POST https://academify-backend-5cz9.onrender.com/api/verify-email \
   {
     "id": 1,
     "category": "Tutorials",
-    "ratings": 4.5,
-    "cost": 20.00,
-    "reviews": ["Great material!", "Very helpful"],
     "numberOfPages": 150,
     "department": "Computer Science",
     "level": "Beginner",
@@ -255,9 +246,6 @@ curl -X POST https://academify-backend-5cz9.onrender.com/api/verify-email \
   {
     "id": 1,
     "category": "Tutorials",
-    "ratings": 4.5,
-    "cost": 20.00,
-    "reviews": ["Great material!", "Very helpful"],
     "numberOfPages": 150,
     "department": "Computer Science",
     "level": "Beginner",
@@ -286,13 +274,10 @@ If no materials are found for the specified category, the response will be an em
 ### Create a New Material
 
 ```bash
-curl -X POST http://localhost:3000/materials \
+curl -X POST https://academify-backend-5cz9.onrender.com/materials \
 -H "Content-Type: application/json" \
 -d '{
   "category": "Tutorials",
-  "ratings": 4.5,
-  "cost": 20.00,
-  "reviews": ["Great material!", "Very helpful"],
   "numberOfPages": 150,
   "department": "Computer Science",
   "level": "Beginner",
@@ -306,11 +291,92 @@ curl -X POST http://localhost:3000/materials \
 ### Retrieve All Materials
 
 ```bash
-curl -X GET http://localhost:3000/materials
+curl -X GET https://academify-backend-5cz9.onrender.com/materials
 ```
 
 ### Retrieve Materials by Category
 
 ```bash
-curl -X GET http://localhost:3000/materials/category/Tutorials
+curl -X GET https://academify-backend-5cz9.onrender.com/materials/category/Tutorials
 ```
+
+### 8. Add a Review to a Material
+
+- **Endpoint:** `/materials/:id/reviews`
+- **Method:** `PATCH`
+- **Description:** Adds a new review to a specific material. Each review contains a review text (`value`) and a corresponding rating (`rating`).
+
+#### Request
+
+- **URL Parameters:**
+  - `id` (integer): The unique identifier of the material to which the review will be added.
+
+- **Headers:**
+  - `Content-Type: application/json`
+
+- **Body:**
+
+```json
+{
+  "value": "string",  // The review text or comment about the material
+  "rating": 0         // The rating for the material (integer, e.g., 1-5)
+}
+```
+
+#### Example cURL Request
+
+```bash
+curl -X PATCH https://academify-backend-5cz9.onrender.com/materials/1/reviews \
+-H "Content-Type: application/json" \
+-d '{
+  "value": "Great material!",
+  "rating": 5
+}'
+```
+
+#### Response
+
+- **Status Code:** `200 OK` (on success)
+- **Body:**
+
+```json
+{
+  "id": 1,                         // Auto-generated ID of the material
+  "category": "Tutorials",
+  "numberOfPages": 150,
+  "department": "Computer Science",
+  "level": "Beginner",
+  "title": "Learn NestJS",
+  "description": "A beginner-friendly guide to learning NestJS.",
+  "price": 29.99,
+  "url": "https://example.com/learn-nestjs",
+  "reviews": [
+    {
+      "value": "Great material!",
+      "rating": 5
+    }
+  ]
+}
+```
+
+#### Error Handling
+
+- **404 Not Found:** Returned if the material with the specified `id` does not exist.
+  - **Example:**
+
+    ```json
+    {
+      "statusCode": 404,
+      "message": "Material not found"
+    }
+    ```
+
+- **400 Bad Request:** Returned if the request body is invalid or missing required fields (`value` and `rating`).
+  - **Example:**
+
+    ```json
+    {
+      "statusCode": 400,
+      "message": "Invalid request body"
+    }
+    ```

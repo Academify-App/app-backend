@@ -1,8 +1,5 @@
 export class CreateMaterialDto {
   category: string;
-  ratings: number;
-  cost: number;
-  reviews: string[];
   numberOfPages: number;
   department: string;
   level: string;
@@ -10,4 +7,5 @@ export class CreateMaterialDto {
   description: string;
   price: number;
   url: string;
+  reviews?: { value: string; rating: number }[];
 }
