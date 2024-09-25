@@ -7,5 +7,6 @@ export class CreateMaterialDto {
   description: string;
   price: number;
   url: string;
+  cover_url: string;
   reviews?: { value: string; rating: number }[];
 }

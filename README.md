@@ -176,7 +176,8 @@ curl -X POST https://academify-backend-5cz9.onrender.com/api/verify-email \
   "title": "string",               // Title of the material
   "description": "string",         // Description of the material
   "price": 0.0,                    // Price of the material (decimal, e.g., 29.99)
-  "url": "string"                  // URL to the material or related resource
+  "url": "string",                 // URL to the material or related resource
+  "cover_url": "string"            // cover Url of the material or related resource
 }
 ```
 
@@ -194,7 +195,8 @@ curl -X POST https://academify-backend-5cz9.onrender.com/api/verify-email \
   "title": "Learn NestJS",
   "description": "A beginner-friendly guide to learning NestJS.",
   "price": 29.99,
-  "url": "https://example.com/learn-nestjs"
+  "url": "https://example.com/learn-nestjs",
+  "cover_url": "https://example.com/cover"
 }
 ```
 
@@ -220,7 +222,8 @@ curl -X POST https://academify-backend-5cz9.onrender.com/api/verify-email \
     "title": "Learn NestJS",
     "description": "A beginner-friendly guide to learning NestJS.",
     "price": 29.99,
-    "url": "https://example.com/learn-nestjs"
+    "url": "https://example.com/learn-nestjs",
+    "cover_url": "https://example.com/cover"
   }
 ]
 ```
@@ -252,7 +255,8 @@ curl -X POST https://academify-backend-5cz9.onrender.com/api/verify-email \
     "title": "Learn NestJS",
     "description": "A beginner-friendly guide to learning NestJS.",
     "price": 29.99,
-    "url": "https://example.com/learn-nestjs"
+    "url": "https://example.com/learn-nestjs",
+    "cover_url": "https://example.com/cover"
   }
 ]
 ```
@@ -284,7 +288,8 @@ curl -X POST https://academify-backend-5cz9.onrender.com/materials \
   "title": "Learn NestJS",
   "description": "A beginner-friendly guide to learning NestJS.",
   "price": 29.99,
-  "url": "https://example.com/learn-nestjs"
+  "url": "https://example.com/learn-nestjs",
+  "cover_url": "https://example.com/cover"
 }'
 ```
 
@@ -350,6 +355,7 @@ curl -X PATCH https://academify-backend-5cz9.onrender.com/materials/1/reviews \
   "description": "A beginner-friendly guide to learning NestJS.",
   "price": 29.99,
   "url": "https://example.com/learn-nestjs",
+  "cover_url": "https://example.com/cover",
   "reviews": [
     {
       "value": "Great material!",

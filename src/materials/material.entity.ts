@@ -29,6 +29,9 @@ export class Material {
   @Column('text')
   url: string;
 
+  @Column('text')
+  cover_url: string;
+
   @Column('jsonb', { default: [] })
   reviews: { value: string; rating: number }[];
 }
