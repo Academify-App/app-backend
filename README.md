@@ -7,7 +7,7 @@
 
 The base URL for the API is:
 ```
-https://academify-backend-5cz9.onrender.com
+https://app-backend-hrvd.onrender.com
 ```
 
 ## Endpoints
