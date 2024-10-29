@@ -43,7 +43,7 @@ This endpoint allows a new user to register into the system.
 #### Example Request
 
 ```bash
-curl -X POST https://academify-backend-5cz9.onrender.com/api/register \
+curl -X POST https://app-backend-hrvd.onrender.com/api/register \
 -H "Content-Type: application/json" \
 -d '{
   "name": "John Doe",
@@ -113,7 +113,7 @@ This endpoint allows users to request an OTP (One-Time Password) to verify their
 #### Example Request
 
 ```bash
-curl -X POST https://academify-backend-5cz9.onrender.com/api/send-otp \
+curl -X POST https://app-backend-hrvd.onrender.com/api/send-otp \
 -H "Content-Type: application/json" \
 -d '{
   "email": "john.doe@example.com"
@@ -147,7 +147,7 @@ This endpoint allows users to verify their email by entering the OTP they receiv
 #### Example Request
 
 ```bash
-curl -X POST https://academify-backend-5cz9.onrender.com/api/verify-email \
+curl -X POST https://app-backend-hrvd.onrender.com/api/verify-email \
 -H "Content-Type: application/json" \
 -d '{
   "email": "john.doe@example.com",
@@ -278,7 +278,7 @@ If no materials are found for the specified category, the response will be an em
 ### Create a New Material
 
 ```bash
-curl -X POST https://academify-backend-5cz9.onrender.com/materials \
+curl -X POST https://app-backend-hrvd.onrender.com/materials \
 -H "Content-Type: application/json" \
 -d '{
   "category": "Tutorials",
@@ -296,13 +296,13 @@ curl -X POST https://academify-backend-5cz9.onrender.com/materials \
 ### Retrieve All Materials
 
 ```bash
-curl -X GET https://academify-backend-5cz9.onrender.com/materials
+curl -X GET https://app-backend-hrvd.onrender.com/materials
 ```
 
 ### Retrieve Materials by Category
 
 ```bash
-curl -X GET https://academify-backend-5cz9.onrender.com/materials/category/Tutorials
+curl -X GET https://app-backend-hrvd.onrender.com/materials/category/Tutorials
 ```
 
 ### 8. Add a Review to a Material
@@ -331,7 +331,7 @@ curl -X GET https://academify-backend-5cz9.onrender.com/materials/category/Tutor
 #### Example cURL Request
 
 ```bash
-curl -X PATCH https://academify-backend-5cz9.onrender.com/materials/1/reviews \
+curl -X PATCH https://app-backend-hrvd.onrender.com/materials/1/reviews \
 -H "Content-Type: application/json" \
 -d '{
   "value": "Great material!",
